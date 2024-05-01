@@ -39,11 +39,12 @@ const ProductItem = ({product}: ProductItemProps) => {
                         {formatCurrency(calculateProductTotalPrice(product))}
                     </h3>
                     
-                    {product.discountPercentage > 0 && (
-                        <span className=" line-through text-muted-foreground text-xs" >
-                        {formatCurrency(Number(product.price))}
-                        </span>
-                    )}
+                    {product.discountPercentage > 0 &&
+                            <span className=" line-through text-muted-foreground text-xs" >
+                            {formatCurrency(Number(product.price))}
+                            </span>
+
+                    }
             </div>
                 <span className=" text-muted-foreground text-xs block" >
                     {product.restaurant.name}
