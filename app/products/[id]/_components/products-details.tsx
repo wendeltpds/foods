@@ -8,6 +8,7 @@ import { BikeIcon, ChevronLeftIcon, ChevronRightIcon, SpaceIcon, TimerIcon } fro
 import { useState } from "react";
 import { Card } from "@/app/_components/ui/card";
 import ProductList from "@/app/_components/product-list";
+import DeliveryInfo from "@/app/_components/deliveryInfo";
 
 interface ProductDetailsProps {
     product: Prisma.ProductGetPayload<{
@@ -89,37 +90,8 @@ const ProductDetails = ({product, complementaryProducts}: ProductDetailsProps) =
             </div>
         </div>
 
-        <div className="px-5">
-            <Card className=" flex justify-around py-3 mt-6" >
-                <div className=" flex flex-col items-center">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <BikeIcon size={14}/>
-                        <span className=" text-xs" >Entraga</span>
-                    </div>
-
-                    {Number(product.restaurant.deliveryFee) > 0 ? (
-                        <p className=" text-xs font-semibold">
-                            {formatCurrency(Number(product.restaurant.deliveryFee))}
-                        </p>
-                    ) : (
-                        <p className=" text-xs font-semibold" >Gratis</p>
-                    )
-                }
-                </div>
-
-
-                <div className=" flex flex-col items-center">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <TimerIcon size={14}/>
-                        <span className=" text-xs" >Entraga</span>
-                    </div>
-
-                    <p className=" text-xs font-semibold">
-                        {product.restaurant.deliveryTimeMinutes} min
-                    </p>
-
-                </div>
-            </Card>
+        <div className=" px-5">
+            <DeliveryInfo restaurant={product.restaurant} />
         </div>
 
         <div className=" mt-6 space-y-3" >
@@ -131,6 +103,10 @@ const ProductDetails = ({product, complementaryProducts}: ProductDetailsProps) =
         <div className=" mt-6 space-y-3" >
             <h3 className=" font-semibold px-5">sucos</h3>
             <ProductList products={complementaryProducts} />
+        </div>
+
+        <div className="px-5">
+            <Button className=" w-full font-semibold" >Adicionar a sacola</Button>
         </div>
     </div>
     );
