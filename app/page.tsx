@@ -63,10 +63,10 @@ export default async function Home() {
           <Button variant="ghost" className=" h-fit text-primary p-0 hover:bg-transparent flex" >Ver Todos  
             <ChevronRightIcon />
           </Button>
-
         </div>
-        <RestaurantList/>
+        <RestaurantList />
       </div>
+
     </>
   )
 }

@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
-import { db } from "../_lib/prisma";
 import ProductItem from "./product-item";
+
 
 interface ProductListProps {
     products: Prisma.ProductGetPayload<{
@@ -14,13 +14,13 @@ interface ProductListProps {
     }>[]
 }
 
-const ProductList = async({products}: ProductListProps) => {
+const ProductList = ({products}: ProductListProps) => {
     return ( 
         <div className=" flex overflow-x-scroll gap-4 px-5" >
-            {products.map((product) => (
-                <ProductItem key={product.id} product={product} />
-            ))}
-        </div>
+                {products.map((product) => (              
+                    <ProductItem  product={product} key={product.id} />
+                ))}
+            </div>
      );
 }
  
