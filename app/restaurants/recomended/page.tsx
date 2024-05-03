@@ -9,7 +9,7 @@ const RecomendedRestaurant = async() => {
             <Header />     
             <div className=" px-5 py-6">
                 <h2 className="text-lg font-semibold mb-6">Restaurantes Recomendados</h2>
-                <div className=" space-y-4 px-5 gap-6">
+                <div className=" space-y-4 px-5 gap-6 grid grid-cols-2">
                     {restaurants.map((restaurant) => (
                         <RestaurantItem  key={restaurant.id} restaurant={restaurant} className=" min-w-full max-w-full"/>
                     ))}

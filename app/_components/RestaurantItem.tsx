@@ -14,7 +14,7 @@ interface RestaurantItemProps {
 const RestaurantItem = ({restaurant, className}: RestaurantItemProps) => {
     return ( 
         <Link href={`/restaurants/${restaurant.id}`} 
-        className={cn("min-w-[266px max-w-[266px", className)}>        
+        className={cn("min-w-[266px] max-w-[266px] px-2 ", className)}>        
             <div className="space-y-3 w-full" >
                 <div className=" w-full h-[136px] relative" >
                     <Image  
