@@ -52,7 +52,7 @@ const RestaurantPage = async({params:{id}}: RestaurantPageProps) => {
         return notFound()
     }
     return ( 
-        <div className=" flex" >
+        <div>
             <RestaurantImage restaurant={restaurant} />
 
             <div className="flex justify-between items-center px-5 pt-5 relative z-50 mt-[-1.5rem] rounded-tl-3xl py-5 rounded-tr-3xl bg-white">
