@@ -11,6 +11,7 @@ import DeliveryInfo from "@/app/_components/deliveryInfo";
 import { CartContext } from "@/app/_providers/cart";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/app/_components/ui/sheet";
 import Cart from "@/app/_components/cart";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/app/_components/ui/alert-dialog";
 
 interface ProductDetailsProps {
     product: Prisma.ProductGetPayload<{
@@ -30,11 +31,24 @@ const ProductDetails = ({product, complementaryProducts}: ProductDetailsProps) =
 
     const [quantity , setQuantity] = useState(1)
     const [isCartOpen , setIsCartOpen] = useState(false)
+    const [isConfirmedDiologOpen , setIsConfirmedDiologOpen] = useState(false)
+
     const { addProductsToCart , products} = useContext(CartContext)
 
-    const handleAddToCartClick = () => {
+    const addToCart = () => {
         addProductsToCart(product, quantity)
         setIsCartOpen(true)
+    }
+
+    const handleAddToCartClick = () => {
+
+        const hasDifferentRestaurantProduct = products.some((cardProduct) => cardProduct.restaurantId !== product.restaurantId)
+
+        if(hasDifferentRestaurantProduct){
+            return setIsConfirmedDiologOpen(true)
+        }
+
+        addToCart()
     }
 
     const handleIncreaseQuantityClick = () => setQuantity(currentState => currentState + 1)
@@ -131,6 +145,25 @@ const ProductDetails = ({product, complementaryProducts}: ProductDetailsProps) =
                     <Cart />
                 </SheetContent>
             </Sheet>
+
+            <AlertDialog
+            open={isConfirmedDiologOpen}
+            onOpenChange={setIsConfirmedDiologOpen}
+            >
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                        <AlertDialogTitle>Voce so pode itens de um restaurante por vez</AlertDialogTitle>
+                        <AlertDialogDescription>
+                                Deseja mesmo adicionar esse produto ? Isso limpara sua sacola
+                        </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                        <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                        <AlertDialogAction>Esvaziar e adicionar</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+
         </>
     );
 }

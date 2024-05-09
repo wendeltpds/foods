@@ -70,7 +70,17 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
         }
       }
     }}>, quantity: number) => {
-        const isProductAlreadyOnCart = products.some(cartProducts => cartProducts.id === product.id)
+
+      const hasDifferentRestaurantProduct = products.some((cartproduct) => {
+        cartproduct.id === product.id
+      })
+
+      if(hasDifferentRestaurantProduct){
+        setProducts([])
+      }
+
+
+      const isProductAlreadyOnCart = products.some(cartProducts => cartProducts.id === product.id)
 
         if(isProductAlreadyOnCart) {
             return setProducts((prev) => 
@@ -82,9 +92,9 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
                     }
                 }
                 return cartProduct;
-            })
-            )       
-        }
+          })
+        )       
+      }
         
         setProducts(prev => [...prev , {...product , quantity: quantity}])
       }
