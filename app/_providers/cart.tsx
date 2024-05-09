@@ -19,7 +19,13 @@ interface IcartContext {
     TotalPrice: number;
     SubTotalPrice:number;
     TototalDiscounts: number;
-    addProductsToCart: (product: Product, quantity: number) => void
+    addProductsToCart: (product: Prisma.ProductGetPayload<{include:{
+      restaurant:{
+        select:{
+          deliveryFee:true
+        }
+      }
+    }}>, quantity: number) => void
     decreaseProductQuantity: (productId : string) => void
     IncreaseProductQuantity: (productId: string) => void
     removeProductFromCart: (productId: string) => void
@@ -57,7 +63,13 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
       return setProducts((prev) => prev.filter((product) => product.id !== productId ))
     }
     
-    const addProductsToCart = (product: Product, quantity: number) => {
+    const addProductsToCart = (product: Prisma.ProductGetPayload<{include:{
+      restaurant:{
+        select:{
+          deliveryFee:true
+        }
+      }
+    }}>, quantity: number) => {
         const isProductAlreadyOnCart = products.some(cartProducts => cartProducts.id === product.id)
 
         if(isProductAlreadyOnCart) {
