@@ -19,6 +19,7 @@ interface IcartContext {
     TotalPrice: number;
     SubTotalPrice:number;
     TototalDiscounts: number;
+    TototalQuantity: number;
     addProductsToCart: (product: Prisma.ProductGetPayload<{include:{
       restaurant:{
         select:{
@@ -36,6 +37,7 @@ export const CartContext = createContext<IcartContext>({
     TotalPrice: 0,
     SubTotalPrice:0,
     TototalDiscounts: 0,
+    TototalQuantity: 0,
     addProductsToCart: () => {},
     decreaseProductQuantity: () => {},
     IncreaseProductQuantity: () => {},
@@ -48,6 +50,12 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
     const SubTotalPrice = useMemo(() => {
       return products.reduce((acc , product) => {
         return acc + Number(product.price) * product.quantity
+      }, 0)
+    }, [products])
+
+    const TototalQuantity = useMemo(() => {
+      return products.reduce((total , produto) => {
+        return total + produto.quantity
       }, 0)
     }, [products])
 
@@ -78,7 +86,6 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
       if(hasDifferentRestaurantProduct){
         setProducts([])
       }
-
 
       const isProductAlreadyOnCart = products.some(cartProducts => cartProducts.id === product.id)
 
@@ -139,6 +146,7 @@ export const CartProvider = ({children}: {children: ReactNode}) => {
           TotalPrice,
           SubTotalPrice, 
           TototalDiscounts,
+          TototalQuantity,
         }}> 
             {children}
         </CartContext.Provider>
