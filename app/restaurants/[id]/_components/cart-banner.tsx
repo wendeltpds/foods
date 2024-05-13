@@ -17,7 +17,8 @@ const CartBanner = ({restaurant}: CartBannerProps) => {
     return ( 
         <>        
             {products.length > 0 && (            
-                <div className=" fixed bottom-0 left-0 z-50 w-full bg-white p-5 pt-3 border-t border-muted-foreground">
+                <div className=" fixed bottom-0 left-0 z-50 w-full
+                bg-white p-5 pt-3 border-t border-muted-foreground">
                     <div className=" flex justify-between items-center">
                         <div className=" space-y-2">
                             <span className="text-xs text-muted-foreground">Total sem entrega</span>
