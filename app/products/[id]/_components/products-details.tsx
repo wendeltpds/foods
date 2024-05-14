@@ -159,7 +159,7 @@ const ProductDetails = ({product, complementaryProducts}: ProductDetailsProps) =
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                         <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                        <AlertDialogAction>Esvaziar e adicionar</AlertDialogAction>
+                        <AlertDialogAction onClick={addToCart}>Esvaziar e adicionar</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
