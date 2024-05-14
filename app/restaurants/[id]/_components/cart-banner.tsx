@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/ap
 import { formatCurrency } from "@/app/_helpers/price";
 import { CartContext } from "@/app/_providers/cart";
 import { Restaurant } from "@prisma/client";
+import { useSession } from "next-auth/react";
 import { useContext } from "react";
 
 interface CartBannerProps {

@@ -9,6 +9,7 @@ import { db } from "./_lib/prisma";
 import { PromoBanner } from "./_components/promoBanner";
 import RestaurantList from "./_components/restaurant-list";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default async function Home() {
 
