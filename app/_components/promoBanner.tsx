@@ -5,6 +5,7 @@ interface PromoBannerProps {
 }
 export const PromoBanner = (props: ImageProps) => {
     return ( 
+        // eslint-disable-next-line jsx-a11y/alt-text
         <Image 
         width={0}
         height={0}

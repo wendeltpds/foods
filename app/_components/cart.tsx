@@ -63,7 +63,7 @@ const Cart = () => {
                     <>                    
                         <div className=" space-y-4 flex-auto">
                             {products.map((produto) => (
-                                <CartItem  key={produto.id} cartProduct={produto}/>
+                                <CartItem  key={produto?.id} cartProduct={produto}/>
                             ))}
                         </div>
 

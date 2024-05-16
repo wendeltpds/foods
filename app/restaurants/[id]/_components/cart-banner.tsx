@@ -14,7 +14,7 @@ interface CartBannerProps {
 }
 
 const CartBanner = ({restaurant}: CartBannerProps) => {
-    const {products , TotalPrice , TototalQuantity} = useContext(CartContext)
+    const {products , totalPrice , TototalQuantity} = useContext(CartContext)
     return ( 
         <>        
             {products.length > 0 && (            
@@ -23,7 +23,7 @@ const CartBanner = ({restaurant}: CartBannerProps) => {
                     <div className=" flex justify-between items-center">
                         <div className=" space-y-2">
                             <span className="text-xs text-muted-foreground">Total sem entrega</span>
-                            <h3 className=" font-semibold" >{formatCurrency(TotalPrice)} / <span>{TototalQuantity} {TototalQuantity > 1 ? "itens" : "item"}</span></h3>
+                            <h3 className=" font-semibold" >{formatCurrency(totalPrice)} / <span>{TototalQuantity} {TototalQuantity > 1 ? "itens" : "item"}</span></h3>
                         </div>
 
                         <Sheet>

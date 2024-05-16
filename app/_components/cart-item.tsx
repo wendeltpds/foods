@@ -13,22 +13,22 @@ const CartItem = ({cartProduct}: CartItemProps) => {
     const{ decreaseProductQuantity , IncreaseProductQuantity, removeProductFromCart} = useContext(CartContext)
 
     const handleDecreaseQuantityClick = () => {
-        decreaseProductQuantity(cartProduct.id)
+        decreaseProductQuantity(cartProduct?.id)
     }
 
     const handleIncreaseQuantityClick = () => {
-        IncreaseProductQuantity(cartProduct.id)
+        IncreaseProductQuantity(cartProduct?.id)
     }
 
     const handleDeleteClick = () => {
-        removeProductFromCart(cartProduct.id)
+        removeProductFromCart(cartProduct?.id)
     }
     return ( 
         <div className=" flex items-center justify-between">
             <div className=" flex items-center gap-4">
 
                 <div className=" relative h-20 w-28 rounded-lg" >
-                    <Image src={cartProduct.imageUrl} alt={cartProduct.name} 
+                    <Image src={cartProduct?.imageUrl} alt={cartProduct?.name} 
                     fill
                     className="rounded-lg object-cover"
                     />
@@ -36,13 +36,13 @@ const CartItem = ({cartProduct}: CartItemProps) => {
 
                 <div className=" space-y-2">
 
-                    <h3 className=" text-xs" >{cartProduct.name}</h3>
+                    <h3 className=" text-xs" >{cartProduct?.name}</h3>
 
                     <div className="flex items-center gap-1">
-                        <h4 className=" text-sm font-semibold" >{formatCurrency(calculateProductTotalPrice(cartProduct) * cartProduct.quantity)}</h4>
-                        {cartProduct.discountPercentage > 0 && (
+                        <h4 className=" text-sm font-semibold" >{formatCurrency(calculateProductTotalPrice(cartProduct) * cartProduct?.quantity)}</h4>
+                        {cartProduct?.discountPercentage > 0 && (
                             <span className=" text-xs line-through text-muted-foreground">
-                                {formatCurrency(Number(cartProduct.price) * cartProduct.quantity)}
+                                {formatCurrency(Number(cartProduct?.price) * cartProduct?.quantity)}
                             </span>
                         )}
                     </div>
@@ -57,7 +57,7 @@ const CartItem = ({cartProduct}: CartItemProps) => {
                         >
                             <ChevronLeftIcon size={18}/>
                         </Button>
-                        <span className=" w-4 text-sm">{cartProduct.quantity}</span>
+                        <span className=" w-4 text-sm">{cartProduct?.quantity}</span>
                         <Button 
                             size="icon"
                             className=" h-8 w-8"

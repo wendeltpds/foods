@@ -33,10 +33,10 @@ const ProductDetails = ({product, complementaryProducts}: ProductDetailsProps) =
     const [isCartOpen , setIsCartOpen] = useState(false)
     const [isConfirmedDiologOpen , setIsConfirmedDiologOpen] = useState(false)
 
-    const { addProductsToCart , products} = useContext(CartContext)
+    const { addProductToCart , products} = useContext(CartContext)
 
     const addToCart = () => {
-        addProductsToCart(product, quantity)
+        addProductToCart(product, quantity)
         setIsCartOpen(true)
     }
 
